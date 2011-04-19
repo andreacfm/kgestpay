@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.homepage          = 'http://www.kemen.it'
   s.rubyforge_project = 'kgestpay'
 
-  s.extra_rdoc_files = ['README.rdoc']
-  s.files = %w(MIT-LICENSE Rakefile README.rdoc) + Dir['lib/**/*.rb'] + Dir['test/**/*.rb']
+  s.files = Dir['lib/**/*.rb'] + Dir['test/**/*.rb']
   s.require_paths = %w(lib)  
 end
