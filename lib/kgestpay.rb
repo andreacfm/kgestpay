@@ -21,6 +21,8 @@ module Kemen
         raise(ArgumentError.new("Parameter [:#{arg}] is required but has not been passed")) if args[arg.to_sym].nil?
       end
 
+      args[:shopLogin] = @shopLogin
+
       #invoke the gestpay webservice method and return the result
       @ws.callPagamS2S(args).callPagamS2SResult.gestPayS2S
 
