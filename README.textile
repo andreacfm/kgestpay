@@ -1,6 +1,7 @@
 h3. Running tests
 
 p. Create a file /test/cc.yml with the details of the credit card to be used to run the tests:
+
 @
 number:'www'
 exp_month:'aaa'
