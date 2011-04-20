@@ -12,7 +12,7 @@ class KGestPayTest < Test::Unit::TestCase
     @shopLogin = 'GESPAY51954'
     @endpoint = 'https://testecomm.sella.it/gestpay/gestpayws/WSs2s.asmx'
     @k = Kemen::KGestPay.new(:shopLogin => @shopLogin, :endpoint => @endpoint)
-
+    @cc = YAML::load( File.open( 'test/cc.yml' ) )
   end
 
   def test_shoplogin_saved_as_instance_variable
@@ -31,9 +31,22 @@ class KGestPayTest < Test::Unit::TestCase
     assert_nothing_raised(ArgumentError){@k.callPagamS2S(:uicCode => 1,:amount => 1,:shopTransactionId => 1,:cardNumber => 1,:expiryMonth => 1,:expiryYear => 1)}
   end
 
-  def test_callPagamS2S
+  def test_callPagamS2S_must_fail_passing_wrong_arguments
     resp = @k.callPagamS2S(:uicCode => 1,:amount => 1,:shopTransactionId => 1,:cardNumber => 1,:expiryMonth => 1,:expiryYear => 1)
     assert_equal('KO',resp.transactionResult)
+  end
+
+  def test_callPagamS2S_must_succeed
+    resp = @k.callPagamS2S(
+      :uicCode => 242,
+      :amount => 1,
+      :shopTransactionId => 1,
+      :cardNumber => @cc.number,
+      :expiryMonth => @cc.exp_month,
+      :expiryYear => @cc.exp_year
+    )
+    p resp
+    assert_equal('OK',resp.transactionResult)
   end
 
 end
