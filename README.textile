@@ -2,6 +2,6 @@ h3. Running tests
 
 p. Create a file /test/cc.yml with the details of the credit card to be used to run the tests:
 
-pre. number:'www' 
-exp_month:'aaa'
-exp_year:'eee'
+pre. number: cc_number
+exp_month: 09
+exp_year: 13
