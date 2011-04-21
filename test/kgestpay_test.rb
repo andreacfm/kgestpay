@@ -38,6 +38,7 @@ class KGestPayTest < Test::Unit::TestCase
     assert_equal('KO',resp.transactionResult)
   end
 
+=begin
   def test_callPagamS2S_must_succeed
     resp = @k.callPagamS2S(
       :uicCode => 242,
@@ -50,8 +51,39 @@ class KGestPayTest < Test::Unit::TestCase
       :buyerName => @cc['name'],
       :buyerEmail => @cc['email']
     )
-    p resp
     assert_equal('OK',resp.transactionResult)
+  end
+=end
+
+  def test_callSettle_s2s_args
+    assert_raise(ArgumentError){@k.callSettleS2S(:uicCode => 1,:bankTransId => 1)}
+    assert_raise(ArgumentError){@k.callSettleS2S(:amout => 1,:shopTransId => 1)}
+    assert_raise(ArgumentError){@k.callSettleS2S(:uicCode => 1,:amout => 1)}
+  end
+
+  def test_callSetlleS2S_fails_with_code_2019_if_MOTO_cash_automatically
+    resp = @k.callPagamS2S(
+      :uicCode => 242,
+      :amount => 0.1,
+      :shopTransactionId => rand(1000000),
+      :cardNumber => @cc['number'],
+      :expiryMonth => @cc['exp_month'],
+      :expiryYear => @cc['exp_year'],
+      :cvv => @cc['cvv'],
+      :buyerName => @cc['name'],
+      :buyerEmail => @cc['email']
+    )
+    assert_equal('OK',resp.transactionResult)
+
+    resp2 = @k.callSettleS2S(
+        :bankTransID => resp.bankTransactionID,
+        :uicCode => 242,
+        :amount => 0.1
+    )
+
+    assert_equal('KO',resp2.transactionResult)
+    assert_equal('2019', resp2.errorCode)
+
   end
 
 end

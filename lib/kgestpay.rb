@@ -17,7 +17,7 @@ module Kemen
     def callPagamS2S(args)
 
       #Required arguments
-      [:uicCode,:amount,:shopTransactionId,:cardNumber,:expiryMonth,:expiryYear,:cvv,:buyerName,:buyerEmail].each do |arg|
+      [:uicCode, :amount, :shopTransactionId, :cardNumber, :expiryMonth, :expiryYear, :cvv, :buyerName, :buyerEmail].each do |arg|
         raise(ArgumentError.new("Parameter [:#{arg}] is required but has not been passed")) if args[arg.to_sym].nil?
       end
 
@@ -25,6 +25,23 @@ module Kemen
 
       #invoke the gestpay webservice method and return the result
       @ws.callPagamS2S(args).callPagamS2SResult.gestPayS2S
+
+    end
+
+    def callSettleS2S(args)
+
+      #Required arguments
+      [:uicCode, :amount].each do |arg|
+        raise(ArgumentError.new("Parameter [:#{arg}] is required but has not been passed")) if args[arg.to_sym].nil?
+      end
+
+      #conditional requirments
+      raise(ArgumentError.new("One between the parameters [:bankTransID] or [:shopTransID] is required.")) if args[:bankTransID].nil? && args[:shopTransID].nil?
+
+      args[:shopLogin] = @shopLogin
+
+      #invoke the gestpay webservice method and return the result
+      @ws.callSettleS2S(args).callSettleS2SResult.gestPayS2S
 
     end
 

@@ -29,7 +29,7 @@ resp = gateway.callPagamS2S(
 #check the transaction result
 resp.transactionResult => KO or OK
 resp.authorizationCode => auth code
-resp.bankTransactionId => transaction is assigned by the bank
+resp.bankTransactionID => transaction is assigned by the bank
 resp.errorCode => in case of KO holds the error code assigned by gestpay
 resp.errorDescription => in case of KO holds the description of the error
 resp.buyer.buyerName => nome del cliente
