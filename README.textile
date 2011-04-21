@@ -52,5 +52,18 @@ resp = @k.callSettleS2S(
 #check the transaction result
 resp.transactionResult => KO or OK
 
+h3. callDeleteS2S
+
+p. Delete an authorized transaction. Available only for transaction only authorized but not yet finalized.
+
+pre. #gateway init
+gateway = Kemen::KGestPay.new(:shopLogin => 'login', :endpoint => 'url del ws - test o produzione')
+#call the service
+resp = @k.callDeleteS2S(
+    :shopTransactionId => {transactionid assigned by the seller in the authorization process},
+    :bankTransactionId => {transactionid assigned by the bank in the authorization process}
+)
+#check the transaction result
+resp.transactionResult => KO or OK
 
 

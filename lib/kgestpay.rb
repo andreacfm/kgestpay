@@ -45,6 +45,18 @@ module Kemen
 
     end
 
+    def callDeleteS2S(args)
+
+      #conditional requirments
+      raise(ArgumentError.new("One between the parameters [:bankTransactionId] or [:shopTransactionId] is required.")) if args[:bankTransactionId].nil? && args[:shopTransactionId].nil?
+
+      args[:shopLogin] = @shopLogin
+
+      #invoke the gestpay webservice method and return the result
+      @ws.callDeleteS2S(args).callDeleteS2SResult.gestPayS2S
+
+    end
+
   end
 
 end
