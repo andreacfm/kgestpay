@@ -60,10 +60,28 @@ pre. #gateway init
 gateway = Kemen::KGestPay.new(:shopLogin => 'login', :endpoint => 'url del ws - test o produzione')
 #call the service
 resp = @k.callDeleteS2S(
-    :shopTransactionId => {transactionid assigned by the seller in the authorization process},
+    :shopTransactionId => {transactionid assigned by the seller in the authorization process}
+    OR
     :bankTransactionId => {transactionid assigned by the bank in the authorization process}
 )
 #check the transaction result
 resp.transactionResult => KO or OK
 
+
+h3. callRefundS2S
+
+p. Refund a completed transaction. Refund can be for a partial amount. Both shopTransactionId and bankTransactionId must be provided for a bug that return a system error
+if one is missing.
+
+pre. #gateway init
+gateway = Kemen::KGestPay.new(:shopLogin => 'login', :endpoint => 'url del ws - test o produzione')
+#call the service
+resp = @k.callRefundS2S(
+    :shopTransactionId => {transactionid assigned by the seller in the authorization process},
+    :bankTransactionId => {transactionid assigned by the bank in the authorization process},
+    :uicCode => 242,
+    :amount => ...
+)
+#check the transaction result
+resp.transactionResult => KO or OK
 

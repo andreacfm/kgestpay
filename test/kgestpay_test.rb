@@ -92,6 +92,7 @@ class KGestPayTest < Test::Unit::TestCase
     assert_raise(ArgumentError){@k.callSettleS2S()}
   end
 
+=begin
   def test_callDeleteS2S_fails_with_code_2017_if_MOTO_cash_automatically
     resp = @k.callPagamS2S(
       :uicCode => 242,
@@ -113,6 +114,38 @@ class KGestPayTest < Test::Unit::TestCase
 
     assert_equal('KO',resp2.transactionResult)
     assert_equal('2017', resp2.errorCode)
+
+  end
+=end
+
+  def test_callRefund_s2s_args
+    assert_raise(ArgumentError){@k.callSettleS2S(:uicCode => 1,:bankTransactionId => 1)}
+    assert_raise(ArgumentError){@k.callSettleS2S(:amout => 1,:shopTransactionId => 1)}
+    assert_raise(ArgumentError){@k.callSettleS2S(:uicCode => 1,:amout => 1)}
+  end
+
+  def test_callRefunS2S
+    resp = @k.callPagamS2S(
+      :uicCode => 242,
+      :amount => 0.1,
+      :shopTransactionId => rand(1000000),
+      :cardNumber => @cc['number'],
+      :expiryMonth => @cc['exp_month'],
+      :expiryYear => @cc['exp_year'],
+      :cvv => @cc['cvv'],
+      :buyerName => @cc['name'],
+      :buyerEmail => @cc['email']
+    )
+    assert_equal('OK',resp.transactionResult)
+
+    resp2 = @k.callRefundS2S(
+        :shopTransactionId => resp.shopTransactionID,
+        :bankTransactionId => resp.bankTransactionID,
+        :uicCode => 242,
+        :amount => 0.1
+    )
+
+    assert_equal('OK',resp2.transactionResult)
 
   end
 
