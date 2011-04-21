@@ -124,6 +124,7 @@ class KGestPayTest < Test::Unit::TestCase
     assert_raise(ArgumentError){@k.callSettleS2S(:uicCode => 1,:amout => 1)}
   end
 
+=begin
   def test_callRefunS2S
     resp = @k.callPagamS2S(
       :uicCode => 242,
@@ -143,6 +144,34 @@ class KGestPayTest < Test::Unit::TestCase
         :bankTransactionId => resp.bankTransactionID,
         :uicCode => 242,
         :amount => 0.1
+    )
+
+    assert_equal('OK',resp2.transactionResult)
+
+  end
+=end
+
+  def test_callReadTrxS2S_args
+    assert_raise(ArgumentError){@k.callReadTrxS2S()}
+  end
+
+  def test_callReadTrxS2S
+    resp = @k.callPagamS2S(
+      :uicCode => 242,
+      :amount => 0.1,
+      :shopTransactionId => rand(1000000),
+      :cardNumber => @cc['number'],
+      :expiryMonth => @cc['exp_month'],
+      :expiryYear => @cc['exp_year'],
+      :cvv => @cc['cvv'],
+      :buyerName => @cc['name'],
+      :buyerEmail => @cc['email']
+    )
+    assert_equal('OK',resp.transactionResult)
+
+    resp2 = @k.callReadTrxS2S(
+        :shopTransactionId => resp.shopTransactionID,
+        :bankTransactionId => resp.bankTransactionID
     )
 
     assert_equal('OK',resp2.transactionResult)

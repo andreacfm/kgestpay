@@ -85,3 +85,19 @@ resp = @k.callRefundS2S(
 #check the transaction result
 resp.transactionResult => KO or OK
 
+
+h3. callReadTrxS2S
+
+p. Read informations about a transaction.
+
+pre. #gateway init
+gateway = Kemen::KGestPay.new(:shopLogin => 'login', :endpoint => 'url del ws - test o produzione')
+#call the service
+resp = @k.callRefundS2S(
+    :shopTransactionId => {transactionid assigned by the seller in the authorization process},
+    :bankTransactionId => {transactionid assigned by the bank in the authorization process}
+)
+#check the transaction result
+resp.transactionResult => KO = Authorized or OK = Not Authorized
++ the same infos that are normally returned from callPagamS2S
+
