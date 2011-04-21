@@ -2,15 +2,15 @@
  
 Gem::Specification.new do |s|
   s.name = 'kgestpay'
-  s.version = '0.0.1'
+  s.version = '0.1'
   s.summary = 'server to server implementation for gestpay gateway'
   s.description = 'server to server implementation for gestpay gateway'
 
-  s.required_ruby_version     = '>= 1.8.6'
+  s.required_ruby_version     = '>= 1.9.2'
   s.required_rubygems_version = '>= 1.3.5'
 
   s.author            = 'kemen'
-  s.email             = ''
+  s.email             = 'andrea.campolonghi@kemen.it'
   s.homepage          = 'http://www.kemen.it'
   s.rubyforge_project = 'kgestpay'
 

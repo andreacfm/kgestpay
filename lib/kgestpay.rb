@@ -88,6 +88,20 @@ module Kemen
 
     end
 
+    def callVerifycardS2S(args)
+
+      #Required arguments
+      [:shopTransactionId, :cardNumber, :expiryMonth, :expiryYear, :cvv2].each do |arg|
+        raise(ArgumentError.new("Parameter [:#{arg}] is required but has not been passed")) if args[arg.to_sym].nil?
+      end
+
+      args[:shopLogin] = @shopLogin
+
+      #invoke the gestpay webservice method and return the result
+      @ws.callVerifycardS2S(args).callVerifycardS2SResult.gestPayS2S
+
+    end
+
   end
 
 end

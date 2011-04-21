@@ -1,3 +1,7 @@
+h3. Installation
+
+pre. gem install kgestpay
+
 h3. Running tests
 
 p. Create a file /test/cc.yml with the details of the credit card to be used to run the tests:
@@ -100,4 +104,8 @@ resp = @k.callRefundS2S(
 #check the transaction result
 resp.transactionResult => KO = Authorized or OK = Not Authorized
 + the same infos that are normally returned from callPagamS2S
+
+h3. callVerifycardS2S
+
+p. Not implemented cause service is not available.
 
