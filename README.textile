@@ -18,7 +18,7 @@ gateway = Kemen::KGestPay.new(:shopLogin => 'login', :endpoint => 'url del ws - 
 #call the service with the required parameters
 resp = gateway.callPagamS2S(
     :uicCode => {currency code},
-    :amount => 1,
+    :amount => ..,
     :shopTransactionId => {transaction id assigned by the seller},
     :cardNumber => ......,
     :expiryMonth => 09,
@@ -34,4 +34,23 @@ resp.errorCode => in case of KO holds the error code assigned by gestpay
 resp.errorDescription => in case of KO holds the description of the error
 resp.buyer.buyerName => nome del cliente
 resp.buyer.buyerEmail => email del cliente
+
+h3. callSettleS2S
+
+p. Cash an already authorized card/amount. Used only for transaction only authorized but not yet cashed.
+
+pre. #gateway init
+gateway = Kemen::KGestPay.new(:shopLogin => 'login', :endpoint => 'url del ws - test o produzione')
+#call the service
+resp = @k.callSettleS2S(
+    :bankTransID => {transactionid assigned by the bank in the authorization process},
+    OR
+    :shopTransID => {transactionid assigned by the seller in the authorization process},
+    :uicCode => {currency code},
+    :amount => ...
+)
+#check the transaction result
+resp.transactionResult => KO or OK
+
+
 

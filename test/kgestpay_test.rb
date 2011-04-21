@@ -61,6 +61,7 @@ class KGestPayTest < Test::Unit::TestCase
     assert_raise(ArgumentError){@k.callSettleS2S(:uicCode => 1,:amout => 1)}
   end
 
+=begin
   def test_callSetlleS2S_fails_with_code_2019_if_MOTO_cash_automatically
     resp = @k.callPagamS2S(
       :uicCode => 242,
@@ -85,5 +86,8 @@ class KGestPayTest < Test::Unit::TestCase
     assert_equal('2019', resp2.errorCode)
 
   end
+=end
+
+
 
 end
