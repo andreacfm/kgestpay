@@ -38,19 +38,20 @@ class KGestPayTest < Test::Unit::TestCase
     assert_equal('KO',resp.transactionResult)
   end
 
-=begin
   def test_callPagamS2S_must_succeed
     resp = @k.callPagamS2S(
       :uicCode => 242,
-      :amount => 1,
+      :amount => 0.1,
       :shopTransactionId => 2,
       :cardNumber => @cc['number'],
       :expiryMonth => @cc['exp_month'],
-      :expiryYear => @cc['exp_year']
+      :expiryYear => @cc['exp_year'],
+      :cvv => @cc['cvv'],
+      :buyerName => @cc['name'],
+      :buyerEmail => @cc['email']
     )
     p resp
     assert_equal('OK',resp.transactionResult)
   end
-=end
 
 end

@@ -29,4 +29,6 @@ resp.authorizationCode => auth code
 resp.bankTransactionId => transaction is assigned by the bank
 resp.errorCode => in case of KO holds error code assigned by gestpay
 resp.errorDescription => in case of KO holds description of the error
+resp.buyer.buyerName => nome del cliente
+resp.buyer.buyerEmail => email del cliente
 
