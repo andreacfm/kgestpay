@@ -2,7 +2,7 @@
  
 Gem::Specification.new do |s|
   s.name = 'kgestpay'
-  s.version = '0.1'
+  s.version = '0.1.1'
   s.summary = 'server to server implementation for gestpay gateway'
   s.description = 'server to server implementation for gestpay gateway'
 
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 
   s.author            = 'kemen'
   s.email             = 'andrea.campolonghi@kemen.it'
-  s.homepage          = 'http://www.kemen.it'
+  s.homepage          = 'https://github.com/kemen/KGestPay'
   s.rubyforge_project = 'kgestpay'
 
   s.files = Dir['lib/**/*.rb'] + Dir['test/**/*.rb']
