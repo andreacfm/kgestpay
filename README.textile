@@ -5,3 +5,28 @@ p. Create a file /test/cc.yml with the details of the credit card to be used to 
 pre. number: cc_number
 exp_month: 09
 exp_year: 13
+
+h3. callPagamS2S
+
+p. Service that authorize only or complete the transaction based on the gestpay account configs provided (MOTO)
+
+pre. #gateway init
+gateway = Kemen::KGestPay.new(:shopLogin => 'login', :endpoint => 'url del ws - test o produzione')
+#call the service with the required parameters
+resp = gateway.callPagamS2S(
+    :uicCode => {currency code},
+    :amount => 1,
+    :shopTransactionId => {transaction id assigned by the seller},
+    :cardNumber => ......,
+    :expiryMonth => 09,
+    :expiryYear => {last 2 digits of the expiring year},
+    :cvv => ...,
+    :buyerName => .....,
+    :buyerEmail => ....)
+#check the transaction result
+resp.transactionResult => KO or OK
+resp.authorizationCode => auth code
+resp.bankTransactionId => transaction is assigned by the bank
+resp.errorCode => in case of KO holds error code assigned by gestpay
+resp.errorDescription => in case of KO holds description of the error
+

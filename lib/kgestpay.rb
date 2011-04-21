@@ -17,7 +17,7 @@ module Kemen
     def callPagamS2S(args)
 
       #Required arguments
-      [:uicCode,:amount,:shopTransactionId,:cardNumber,:expiryMonth,:expiryYear].each do |arg|
+      [:uicCode,:amount,:shopTransactionId,:cardNumber,:expiryMonth,:expiryYear,:cvv,:buyerName,:buyerEmail].each do |arg|
         raise(ArgumentError.new("Parameter [:#{arg}] is required but has not been passed")) if args[arg.to_sym].nil?
       end
 
