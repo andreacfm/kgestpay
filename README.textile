@@ -1,3 +1,7 @@
+h3. License
+
+p. This gem is developed by fractalgarden (fractalgarden.com) and released under BSD license. See license file for more details.
+
 h3. Installation
 
 pre. gem install kgestpay
