@@ -16,4 +16,6 @@ Gem::Specification.new do |s|
 
   s.files = Dir['lib/**/*.rb'] + Dir['test/**/*.rb']
   s.require_paths = %w(lib)  
+  
+  s.add_dependency  "soap4r" 
 end
