@@ -2,7 +2,7 @@
  
 Gem::Specification.new do |s|
   s.name = 'kgestpay'
-  s.version = '0.2'
+  s.version = '0.2.1'
   s.summary = 'server to server implementation for gestpay gateway'
   s.description = 'server to server implementation for gestpay gateway'
 
